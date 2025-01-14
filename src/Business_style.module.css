@@ -44,7 +44,7 @@
 
 }
 
-.search_options li {
+.li_inactive {
   cursor: pointer;
   width: 4.33rem;
   border-bottom: 1px solid #fff;
@@ -58,11 +58,23 @@
 }
 
 .search_options li:hover {
-  color: #d4cfcf;
+  color: #856620;
 }
-.search_options li:active {
-  color: #cf6a6a;
+
+.li_active {
+  cursor: pointer;
+  width: 4.33rem;
+  border-bottom: 1px solid #fff;
+  color: #856620;
+  padding: 0 2.58rem 0.33rem 2.58rem;
+  line-height: 1.13;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.83rem;
+  transition: color 0.25s;
+  list-style: none;
 }
+
 
 .search_input_left {
   justify-self: end; /* Aligns the input to the right of its column */
