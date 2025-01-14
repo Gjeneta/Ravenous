@@ -12,8 +12,9 @@
 .business h3{
   line-height: 0.000;
   grid-column: span 2;
+  font-size: 14pt;
   margin: 20px;
-  text-indent: -0.35em;
+  text-indent: -0.55em;
 }
 
 .business h5 {
@@ -22,10 +23,25 @@
   margin: 11px;
 }
 
+.business h6 {
+  line-height: 0.00;    /* Narrow the line spacing */
+  font-size: 10pt;
+  margin: 11px;
+  color: #be973e;
+}
+
+.business h7 {
+  line-height: 0.00;    /* Narrow the line spacing */
+  font-size: 14pt;
+  font-weight: 700;
+  margin: 11px;
+  color: #be973e;
+}
+
 .business img {
   grid-column: span 2; /* Make the image span across both columns */
-  width: 100%;
-  height: auto;
+  width: 250px;
+  height: 250px;
   margin: 11px;
 }
 
