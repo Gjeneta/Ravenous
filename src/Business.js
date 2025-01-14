@@ -35,7 +35,7 @@ const BusinessList= ({input_data})=>{
 
     let list = [];
     for (let i=0; i<input_data.length; i++){
-        list.push(<Business inst={input_data[i]}/>)
+        list.push(<Business inst={input_data[i]} key={input_data[i].id}/>)
     };
     return (
         <div className={styles.business_list}>{list}</div>
@@ -54,25 +54,27 @@ const sortByOptions = [
 
 const SearchBar = () => {
     const [userInput, setUserInput] = useState(" ");
-    const [location, setLocation] = useState("");
-    const [sortingOption, setSortingOption] = useState("");
+    const [location, setLocation] = useState(" ");
+    const [sortingOption, setSortingOption] = useState("Best Match");
     
     const handleChangeInput = ({target}) => setUserInput(target.value);
     const handleChangeLocation = ({target}) => setLocation(target.value);
-    const handleChangeSort= ({target}) => setSortingOption(target.value);
+    const handleChangeSort= (option) => setSortingOption(option);
+
+    const handleSubmit=() => {console.log(`Searching Yelp with ${userInput}, ${location}, ${sortingOption}`)}
 
     return (
         <div className={styles.search_bar}>
         <ul className={styles.search_options}>
                 {sortByOptions.map(x=> {
                     return(
-                    <li key ={x} on onClick={handleChangeSort}> {x} </li>
+                    <li className={sortingOption === x? styles.li_active:styles.li_inactive} key ={x}  onClick={()=>handleChangeSort(x)}> {x} </li>
                 )}
                 )}
             </ul>    
-        <input className={styles.search_input_left} type='text' placeholder='Search Businesses' />
-        <input className={styles.search_input_right} type='text' placeholder='Where?' /> 
-        <button className={styles.search_button} type='button'>Let`s Go</button>  
+        <input className={styles.search_input_left} type='text' placeholder='Search Businesses' onChange={handleChangeInput}/>
+        <input className={styles.search_input_right} type='text' placeholder='Where?' onChange={handleChangeLocation}/> 
+        <button className={styles.search_button} type='button' onClick ={handleSubmit}>Let`s Go</button>  
         </div>
     )
 }
