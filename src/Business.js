@@ -5,14 +5,14 @@ import styles from './Business_style.module.css';
 const Business= ({inst}) => {
     return(
         <div className={styles.business}>
-        <img src={inst.image}/> 
+        <img src={inst.image_url}/> 
         <h3>{inst.name}</h3> 
-        <h5>{inst.address}</h5>
-        <h5>{inst.city}</h5>
-        <h5>{inst.state} {inst.zipcode}</h5>
-        <h5>{inst.category}</h5>
-        <h5>{inst.rating}</h5>
-        <h5>{inst.review_count}</h5>
+        <h5>{inst.location.address1}</h5>
+        <h5>{inst.location.city}</h5>
+        <h5>{inst.location.state} {inst.location.zip_code}</h5>
+        <h7>{inst.categories && inst.categories.length > 0 ? inst.categories[0].title : "No category available"}</h7>
+        <h6>{inst.rating + " stars"}</h6>
+        <h5>{inst.review_count + " reviews"}</h5>
         </div>
     )
 
@@ -43,16 +43,16 @@ const BusinessList= ({input_data})=>{
 
 }
 
-const sortByOptions = [
-    "Best Match",
-    "Highest Rated",
-    "Most Reviewed",
-];
+const sortByOptions = {
+    "Best Match":"distance",
+    "Highest Rated":"rating",
+    "Most Reviewed":"review_count",
+};
 
 
 
 
-const SearchBar = () => {
+const SearchBar = ({onSearch}) => {
     const [userInput, setUserInput] = useState(" ");
     const [location, setLocation] = useState(" ");
     const [sortingOption, setSortingOption] = useState("Best Match");
@@ -61,12 +61,19 @@ const SearchBar = () => {
     const handleChangeLocation = ({target}) => setLocation(target.value);
     const handleChangeSort= (option) => setSortingOption(option);
 
-    const handleSubmit=() => {console.log(`Searching Yelp with ${userInput}, ${location}, ${sortingOption}`)}
+    const handleSubmit=() => {
+        const sort_by = sortByOptions[sortingOption];
+        console.log(`Searching Yelp with ${userInput}, ${location}, ${sort_by}`)
+        const query = `term=${userInput}&location=${location}&sort_by=${sortingOption}`;
+        console.log("API query:", query);  // Log the final query being sent
+        
+        onSearch(userInput, location, sort_by)
+      }
 
     return (
         <div className={styles.search_bar}>
         <ul className={styles.search_options}>
-                {sortByOptions.map(x=> {
+                {Object.keys(sortByOptions).map(x=> {
                     return(
                     <li className={sortingOption === x? styles.li_active:styles.li_inactive} key ={x}  onClick={()=>handleChangeSort(x)}> {x} </li>
                 )}
@@ -81,10 +88,10 @@ const SearchBar = () => {
 
 
 
-const WebPage= ({input_data}) => {
+const WebPage= ({input_data, on_search}) => {
     return (
         <div>
-        <SearchBar/>
+        <SearchBar onSearch={on_search}/>
         <BusinessList input_data={input_data}/>
         </div>
     )
