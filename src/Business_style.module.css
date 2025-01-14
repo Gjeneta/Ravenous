@@ -1,0 +1,101 @@
+
+.business {
+  width: 300px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 columns */
+  grid-template-rows: repeat(5, auto);   /* 3 rows */
+  grid-auto-flow: column; 
+  row-gap: 0.0px;
+  text-align: left;
+}
+
+.business h3{
+  line-height: 0.000;
+  grid-column: span 2;
+  margin: 20px;
+  text-indent: -0.35em;
+}
+
+.business h5 {
+  line-height: 0.00;    /* Narrow the line spacing */
+  font-size: 10pt;
+  margin: 11px;
+}
+
+.business img {
+  grid-column: span 2; /* Make the image span across both columns */
+  width: 100%;
+  height: auto;
+  margin: 11px;
+}
+
+.business_list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    column-gap: 50px;
+    row-gap: 30px;
+    margin: 50px 50px 50px 50px;
+}
+
+.search_options {
+  grid-column: span 2; /* Makes the button span across both columns */
+  justify-self: center; /* Centers the button in the grid */
+  display: flex;
+
+}
+
+.search_options li {
+  cursor: pointer;
+  width: 4.33rem;
+  border-bottom: 1px solid #fff;
+  padding: 0 2.58rem 0.33rem 2.58rem;
+  line-height: 1.13;
+  text-align: center;
+  font-weight: 600;
+  font-size: 0.83rem;
+  transition: color 0.25s;
+  list-style: none;
+}
+
+.search_options li:hover {
+  color: #d4cfcf;
+}
+.search_options li:active {
+  color: #cf6a6a;
+}
+
+.search_input_left {
+  justify-self: end; /* Aligns the input to the right of its column */
+  width: 50%; /* Makes the input smaller than the column */
+  padding: 20px;
+  margin: 15px 15px 20px 60px ;
+}
+
+.search_input_right {
+  justify-self: start; /* Aligns the input to the left of its column */
+  width: 50%; /* Makes the input smaller than the column */
+  padding: 20px;
+  margin: 15px 60px 20px 15px ;
+}
+
+.search_button {
+  grid-column: span 2; /* Makes the button span across both columns */
+  justify-self: center; /* Centers the button in the grid */
+  width: 20%;
+  padding: 20px;
+  color: rgba(255, 255, 255, 0.8); /*White text color */
+  background-color: rgba(183, 128, 11, 0.8); /* Button background*/
+  font-size: 12pt;
+  font-weight: 700;
+}
+
+.search_bar {
+  display: grid;
+  grid-template-columns: repeat(2, 20em);
+  align-items: center; 
+  margin: 50px 0 0 50px;
+
+}
+
+
+
